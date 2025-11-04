@@ -54,8 +54,7 @@ namespace Blog.Controllers
             return blog;
         }
 
-        // POST: api/Blogs (Requires authentication)
-        [Authorize]
+        // POST: api/Blogs (Public - no auth required)
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<Blog.Models.Blog>> PostBlog([FromForm] BlogCreateDto blogDto)
@@ -107,8 +106,7 @@ namespace Blog.Controllers
             return CreatedAtAction("GetBlog", new { id = blog.Id }, blog);
         }
 
-        // PUT: api/Blogs/5 (Requires authentication)
-        [Authorize]
+        // PUT: api/Blogs/5 (Public - no auth required)
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> PutBlog(int id, [FromForm] BlogUpdateDto blogDto)
@@ -204,8 +202,7 @@ namespace Blog.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Blogs/5 (Requires authentication)
-        [Authorize]
+        // DELETE: api/Blogs/5 (Public - no auth required)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
