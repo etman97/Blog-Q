@@ -25,7 +25,7 @@ namespace Blog.Controllers
         public async Task<ActionResult<IEnumerable<object>>> GetBlogs()
         {
             var blogs = await _context
-                .Blogs.Where(b => b.IsPublished)
+                .Blogs
                 .OrderByDescending(b => b.CreatedAt)
                 .Select(b => new
                 {
@@ -46,7 +46,7 @@ namespace Blog.Controllers
         {
             var blog = await _context.Blogs.FindAsync(id);
 
-            if (blog == null || (!blog.IsPublished && !User.Identity.IsAuthenticated))
+            if (blog == null)
             {
                 return NotFound();
             }
